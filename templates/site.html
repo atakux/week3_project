@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title> test </title>
+        <link type="text/css" rel="stylesheet" href="clock.css">
+    </head>
+
+    <body>
+         <script>
+            function zero_pad(num) {
+              if (!num) { return "00"}
+              else if (num<10) { return "0"+num }
+              else { return num }
+            }
+
+
+            document.addEventListener("DOMContentLoaded", function() {
+              function set_time() {
+                  var clock_div = document.getElementById("clock")
+
+                  var current_date = new Date();
+                  var hours = zero_pad(current_date.getHours())
+                  var minutes = zero_pad(current_date.getMinutes())
+                  var seconds = zero_pad(current_date.getSeconds())
+
+                  var date_clock =  hours + ":" + minutes + ":" + seconds
+
+                  clock_div.innerHTML = date_clock;
+                }
+
+
+                setInterval(set_time, 1000);
+            });
+        </script>
+
+        <div id="clock">
+            00:00:00
+        </div>
+    </body>
+</html>
