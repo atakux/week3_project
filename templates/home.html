@@ -39,6 +39,22 @@
     <h1>this the home page<br></h1>
     <h2>navigation:</h2>
     <nav><a href="{{ url_for('static',filename='page_2.html') }}"> page 2 </a></nav>
-    <p>date: {{var}}</p>
+    <p>date: {{day}}<br>time: {{time}} <br></p>
+    {% block content %}
+    <div>
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset>
+                <div>
+                {{ form.timezone.label(class = "form-control-label") }}
+                {{ form.timezone(class="form-control form-control-lg") }}
+                </div>
+            </fieldset>
+            <div>
+                {{ form.submit(class = "btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+    {% endblock content %}
     </body>
 </html>
