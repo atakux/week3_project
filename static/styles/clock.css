@@ -20,3 +20,14 @@
   font-family: 'digital_dreamregular',monospace;
   font-size:48px;
 }
+
+.formbox {
+  width:200px;
+  background-color:#ddd;
+  box-shadow:0 1px 1px rgba(0,0,0,0.08) inset 0 1px 1px #fafafa;
+  font-size:16px;
+}
+
+h3 {
+    text-align: center;
+}

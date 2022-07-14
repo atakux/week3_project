@@ -6,6 +6,7 @@
     </head>
 
     <body>
+        <h3>Current Time in your Location: </h3>
         <div id="clock">
             00:00:00
         </div>
@@ -41,7 +42,7 @@
     <nav><a href="{{ url_for('static',filename='page_2.html') }}"> page 2 </a></nav>
     <p>date: {{day}}<br>time: {{time}} <br></p>
     {% block content %}
-    <div>
+    <div class="formbox">
         <form method="POST" action="">
             {{ form.hidden_tag() }}
             <fieldset>
