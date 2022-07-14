@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired
 from flask_behind_proxy import FlaskBehindProxy
 
 import requests
@@ -11,7 +12,7 @@ app.config['SECRET_KEY'] = 'b20e38d339bdd8c3cfe994fee5370ec7'
 
 
 class InputTimezone(FlaskForm):
-    timezone = StringField('Enter your Timezone')
+    timezone = StringField('Enter Timezone', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
 
@@ -30,13 +31,21 @@ def time_api(timezone):
             return [date, time]
 
 
+def get_zones():
+    url = "http://worldtimeapi.org/api/timezone"
+
+    response = requests.get(url)
+
+    return response.json()
+
+
 @app.route("/", methods=["GET", "POST"])                          # this tells you the URL the method below is related to
 def home_page():
     user_input = InputTimezone()
     if user_input.validate_on_submit():
         date = time_api(user_input.timezone.data)
         return render_template("home.html", day=date[0], time=date[1], form=user_input)        # this prints HTML to the webpage
-    return render_template("home.html", form=user_input)
+    return render_template("home.html", options=get_zones(), form=user_input)
 
 
 @app.route("/page_2")

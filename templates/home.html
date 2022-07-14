@@ -41,6 +41,12 @@
     <h2>navigation:</h2>
     <nav><a href="{{ url_for('static',filename='page_2.html') }}"> page 2 </a></nav>
     <p>date: {{day}}<br>time: {{time}} <br></p>
+     <label for="timezones">list of timezones you can type in: </label>
+        <select> name="locations"
+        {% for i in options %}
+            <option value="{{i}}">{{i}}</option>
+        {% endfor %}
+        </select>
     {% block content %}
     <div class="formbox">
         <form method="POST" action="">
